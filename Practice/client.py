@@ -5,3 +5,8 @@ while True:
     print( s.recv(1024)) 
 s.close()	 
 #
+
+
+
+
+# What happens when unstaged
