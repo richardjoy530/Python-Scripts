@@ -1,0 +1,60 @@
+#include <WiFi.h>
+#include <WiFiMulti.h>
+
+WiFiMulti WiFiMulti;
+
+void setup()
+{
+    Serial.begin(115200);
+    WiFiMulti.addAP("Ibis BSNL -2", "ibis8808");
+    while(WiFiMulti.run() != WL_CONNECTED) {
+        delay(500);
+    }
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
+}
+
+
+void loop()
+{
+    const uint16_t port = 4243;
+    const char * host = "192.168.0.103"; 
+
+    Serial.print("Connecting to ");
+    Serial.println(host);
+
+    WiFiClient client;
+
+    if (!client.connect(host, port)) {
+        Serial.println("Connection failed.");
+        Serial.println("Waiting 5 seconds before retrying...");
+        delay(5000);
+        return;
+    }
+
+    client.println("hello I'm esp");
+
+  int maxloops = 0;
+
+  while (!client.available() && maxloops < 1000)
+  {
+    maxloops++;
+    delay(1); //delay 1 msec
+  }
+  if (client.available() > 0)
+  {
+    //read back one line from the server
+    String line = client.readStringUntil('\r');
+    Serial.println(line);
+  }
+  else
+  {
+    Serial.println("client.available() timed out ");
+  }
+
+    Serial.println("Closing connection.");
+    client.stop();
+
+    Serial.println("Waiting 5 seconds before restarting...");
+    delay(5000);
+}
