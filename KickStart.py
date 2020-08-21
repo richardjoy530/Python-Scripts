@@ -9,6 +9,9 @@ for _ in range(t):
             if j>v[i+1] and big<j:
                 big=j
                 recordDay = recordDay + 1
+            
+            if big<j:
+                big = j
         
         if big < j and i==len(v)-1:
             recordDay = recordDay + 1
