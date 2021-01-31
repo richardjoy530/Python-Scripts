@@ -1,18 +1,19 @@
-import time 
-import numpy as np
-ta = time.time() 
+mainMatrix = [[5, 6, 3, 4, 9, 3],
+              [9, 3, 5, 6, 1, 2],
+              [1, 2, 1, 4, 1, 7],
+              [3, 4, 9, 4, 1, 4],
+              [9, 3, 5, 6, 9, 3],
+              [1, 2, 7, 9, 1, 2]]
 
-mainMatrix = np.random.randint(1,100, size=(100,100))
-secondaryMatrix = np.random.randint(1,100, size=(40,5))
-# mainMatrix = [[5, 6, 3, 4, 9, 3],
-#               [9, 3, 5, 6, 1, 2],
-#               [1, 2, 1, 4, 1, 7],
-#               [3, 4, 9, 4, 1, 4],
-#               [9, 3, 5, 6, 9, 3],
-#               [1, 2, 7, 9, 1, 2]]
+secondaryMatrix = [[9, 3],
+                   [1, 2]]
 
-# secondaryMatrix = [[9, 3],
-#                    [1, 2]]
+
+secondaryMatrixHash = []
+mainMatrixHash = []
+
+for row in secondaryMatrix:
+    secondaryMatrixHash.append(hash(tuple(row)))
 
 
 MAIN_ROW = len(mainMatrix)
@@ -22,34 +23,26 @@ SEC_COL = len(secondaryMatrix[0])
 
 # Section 1
 
-checkStack = []
 matchingIndex = []
+matchingRowIndex = []
 
-for _, sec_row in enumerate(secondaryMatrix):
+for main_i in range(len(mainMatrix)-SEC_ROW+1):
+    rowHashMain = []
+    for main_j in range(len(mainMatrix[0])-SEC_COL+1):
+        sliced = mainMatrix[main_i][main_j:main_j+SEC_COL]
+        rowHashMain.append(hash(tuple(sliced)))
+    mainMatrixHash.append(rowHashMain)
+
+for rowHash in secondaryMatrixHash:
+    for i, row in enumerate(mainMatrixHash):
+        for j, cellHash in enumerate(row):
+            if rowHash == cellHash:
+                matchingRowIndex.append([i, j])
+    matchingIndex.append(matchingRowIndex)
     matchingRowIndex = []
 
-    for main_i, mainRow in enumerate(mainMatrix):
-        checkStack = []
-        # matchingRowIndex = []
 
-
-        for main_j, element in enumerate(mainRow):
-
-            # matching elements are inserted to a stack. and cleared once matching breaks
-            # or the length becomes = SEC_COL
-            if element == sec_row[len(checkStack)]:
-                checkStack.append(element)
-            else:
-                checkStack = []
-
-            if len(checkStack) == SEC_COL:
-                matchingRowIndex.append([main_i, main_j-(SEC_COL-1)])
-                checkStack = []
-    # if len(matchingRowIndex) > 0:
-    matchingIndex.append(matchingRowIndex)
-
-# debug over here and see the matching indexes
-# print(matchingIndex)
+print(matchingIndex)
 
 # Section 2
 
@@ -59,7 +52,7 @@ else:
     count = 0
     for row in matchingIndex:
         for indexPair in row:
-            for i in range(1,SEC_ROW):
+            for i in range(SEC_ROW):
                 if [indexPair[0]+i, indexPair[1]] in matchingIndex[i]:
                     count = count+1
                 else:
@@ -70,9 +63,7 @@ else:
                     count = 0
                     break
 
-tb = time.time() 
 
-print(tb-ta)
 #  ----------In Section 1---------
 # mainMatrix = [[5, 6, 3, 4, 7, 9],
 #               [9, 3, 5, 6, 6, 7],
