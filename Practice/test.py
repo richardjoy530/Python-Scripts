@@ -1,28 +1,45 @@
-n = int(input)
-astr = input().split()
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+N = int(input())
+for _ in range(N):
+    [A, B, n] = map(str, input().split())
+    n = int(n)
+    n = n-1
+    lA = len(A)
+    lB = len(B)
+    pA = 'A'
+    pB = 'B'
+    pattern = ''
+    term = 2
+    while True:
+        lc = lA + lB
+        # print(term)
+        # pattern = pA+pB
+        term += 1
+        if lc >= n:
+            print(term)
+            break
+        lA = lB
+        # pA = pB
+        lB = lc
+        # pB = pattern
 
-firstHalf = astr[0:int(n/2)]
-secondHalf = astr[int(n/2):]
+    # totalDigits = 0
+    # for i in pattern:
+    #     if i == 'A':
+    #         totalDigits += len(A)
+    #     else:
+    #         totalDigits += len(B)
 
-firstChars = []
-lastChars = []
+    #     if totalDigits >= n:
+    #         if i == 'A':
+    #             totalDigits -= len(A)
+    #         else:
+    #             totalDigits -= len(B)
 
-for i in firstHalf:
-    firstChars.append(i[0])
+    #         index = n - totalDigits
+    #         if i == 'A':
+    #             print(A[index])
+    #         else:
+    #             print(B[index])
+    #         break
 
-for i in secondHalf:
-    lastChars.append(i[-1]) 
-
-charList = firstChars+lastChars
-
-myNumber = ''
-
-for i in charList:
-    myNumber = myNumber+i
-
-myNumber = int(myNumber)
-
-if myNumber%11==0:
-    print("OUI")
-else:
-    print("NON")
