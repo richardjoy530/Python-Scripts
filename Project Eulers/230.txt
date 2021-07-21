@@ -1,0 +1,29 @@
+  1 a
+    ^
+  1 b
+  
+  2 ab
+    ^
+  3 bab
+     ^  
+  5 abbab
+       ^
+  8 bababbab
+          ^
+ 13 abbabbababbab
+               ^
+ 21 bababbababbabbababbab
+                       ^
+ 34 abbabbababbabbababbababbabbababbab
+
+ 55 bababbababbabbababbababbabbababbabbababbababbabbababbab l=w-r=21 w=r=55 r=w-l=34
+                       ^
+ 89 abbabbababbabbababbababbabbababbabbababbababbabbababbababbabbababbabbababbababbabbababbab l=w-r=34 w=r=89 r=w-l=55
+                                                         ^
+144 bababbababbabbababbababbabbababbabbababbababbabbababbababbabbababbabbababbababbabbababbabbababbababbabbababbababbabbababbabbababbababbabbababbab w=144 r=89 l=55
+                                                                                                                ^
+14159265351234512342
+8272323846
+141592653512345123428272323846
+8272323846141592653512345123428272323846
+1415926535123451234282723238468272323846141592653512345123428272323846

@@ -1,45 +1,19 @@
-# Enter your code here. Read input from STDIN. Print output to STDOUT
-N = int(input())
-for _ in range(N):
-    [A, B, n] = map(str, input().split())
-    n = int(n)
-    n = n-1
-    lA = len(A)
-    lB = len(B)
-    pA = 'A'
-    pB = 'B'
-    pattern = ''
-    term = 2
-    while True:
-        lc = lA + lB
-        # print(term)
-        # pattern = pA+pB
-        term += 1
-        if lc >= n:
-            print(term)
-            break
-        lA = lB
-        # pA = pB
-        lB = lc
-        # pB = pattern
+class Multiset:
+    
+    self.values = []
 
-    # totalDigits = 0
-    # for i in pattern:
-    #     if i == 'A':
-    #         totalDigits += len(A)
-    #     else:
-    #         totalDigits += len(B)
+    def add(self, val):
+        # adds one occurrence of val from the multiset, if any
+        self.values
 
-    #     if totalDigits >= n:
-    #         if i == 'A':
-    #             totalDigits -= len(A)
-    #         else:
-    #             totalDigits -= len(B)
+    def remove(self, val):
+        # removes one occurrence of val from the multiset, if any
+        pass
 
-    #         index = n - totalDigits
-    #         if i == 'A':
-    #             print(A[index])
-    #         else:
-    #             print(B[index])
-    #         break
-
+    def __contains__(self, val):
+        # returns True when val is in the multiset, else returns False
+        return False
+    
+    def __len__(self):
+        # returns the number of elements in the multiset
+        return 0
